@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://reddit-mastermind-production.up.railway.app';
+const API_BASE_URL = 'https://reddit-mastermind-backend-bb3y.onrender.com';
 
 export const api = {
   async generateCalendar(data) {
