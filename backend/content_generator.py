@@ -3,7 +3,7 @@ import json
 
 class ContentGenerator:
     """
-    Uses OpenAI to generate natural Reddit posts and comments
+    Uses OpenAI to generate natural Reddit posts and comments with high variety
     """
     
     def __init__(self, api_key):
@@ -71,7 +71,7 @@ Return ONLY a JSON object with this structure:
     def generate_comment(self, post_content, persona, company_info, is_first_comment, 
                         should_mention_product, previous_comment=None):
         """
-        Generate a natural Reddit comment
+        Generate a natural Reddit comment with high variety
         """
         
         company_name = self._extract_company_name(company_info)
@@ -79,9 +79,11 @@ Return ONLY a JSON object with this structure:
         # Build prompt based on context
         if is_first_comment and should_mention_product:
             product_instruction = f"""You should naturally mention {company_name} as something you've used/tried, but:
-- Make it casual, not promotional ("I've been using {company_name}..." not "Try {company_name}!")
-- Acknowledge limitations ("it's not perfect but..." or "took some getting used to...")
-- Be helpful first, product mention second
+- Make it casual, not promotional
+- VARY how you mention it (don't always say "I've been using...")
+- Sometimes be direct, sometimes add disclaimers, sometimes be skeptical
+- Mix it up: "been using X", "tried X recently", "X works for this", "heard good things about X"
+- DON'T always say "it's not perfect" - vary your qualifiers
 - Use your persona's voice"""
         else:
             product_instruction = f"DO NOT mention {company_name}. Just be helpful and conversational."
@@ -96,28 +98,48 @@ Return ONLY a JSON object with this structure:
 
 {context}
 
-Write a NATURAL Reddit comment. 
+Write a NATURAL Reddit comment with HIGH VARIETY.
 
-RULES:
-1. Write like a REAL Reddit user - casual, helpful, conversational
-2. Keep it SHORT (1-3 sentences, occasionally 4)
-3. Use Reddit language naturally (lol, tbh, +1, etc when appropriate)
-4. {product_instruction}
-5. Show personality from your background
-6. If replying to a comment, acknowledge what they said
+CRITICAL VARIETY RULES:
+- DON'T start with "Totally" or "I feel you" every time
+- MIX comment lengths: some 1 sentence, some 2-3, occasionally 4
+- VARY openers: "yeah", "lol same", "tbh", "ngl", "+1", "this", "honestly", "imo", "fwiw", "same here"
+- NOT every comment needs "!" - mix periods, no punctuation, casual tone
+- DON'T always acknowledge limitations - sometimes just recommend directly
+- Use Reddit slang naturally: "ngl", "tbh", "imo", "fwiw", "tbf", "lol", "lmao"
+- VARY structure - don't follow formula every time
+- Some comments can be SHORT: "this", "^^", "same lol", "saved"
+- Mix direct answers with personal anecdotes
+- Don't be overly helpful - sometimes be brief or casual
 
-BAD: "I recommend SlideForge. It's a great tool with many features including..."
-GOOD: "I've tried a bunch of tools. Slideforge is the only one that doesn't make me fight the layout. Still fix things after, but it's a decent starting point."
+{product_instruction}
+
+EXAMPLES OF VARIETY (good vs bad):
+
+❌ Bad (repetitive): "Totally feel you! I've been using Tool X. It's not perfect but helps."
+✅ Good: "lol same. been using Tool X, does the job"
+
+❌ Bad: "I totally get that struggle! Tool Y has been great. It's not perfect though."
+✅ Good: "Tool Y worked for me. bit clunky at first ngl"
+
+❌ Bad: "Totally! I've tried Tool Z. Not perfect but saves time!"
+✅ Good: "honestly just use Tool Z. saved me hours"
+
+❌ Bad: "I feel you on that! Have you tried X? It's helped me a lot!"
+✅ Good: "yeah X is solid for this"
+
+❌ Bad: "Totally get that! I've been using Y and it works great!"
+✅ Good: "been there. Y fixes most of it"
 
 Return ONLY the comment text, no JSON, no markdown."""
 
         response = self.client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "You are a Reddit user writing natural, helpful comments."},
+                {"role": "system", "content": "You are a Reddit user writing natural, varied comments. Never be formulaic or repetitive."},
                 {"role": "user", "content": prompt}
             ],
-            temperature=0.9
+            temperature=1.1  # Increased for more variety
         )
         
         comment = response.choices[0].message.content.strip()
