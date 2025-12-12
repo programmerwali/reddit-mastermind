@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { api } from '../utils/api';
+import LoadingSpinner from './LoadingSpinner';
 
 function CalendarView({ calendar, inputData, onNextWeek, onError, loading, setLoading }) {
   const [expandedPosts, setExpandedPosts] = useState({});
@@ -104,7 +105,6 @@ function CalendarView({ calendar, inputData, onNextWeek, onError, loading, setLo
 
         {/* Action Buttons */}
         <div className="flex gap-3">
-
           <button
             onClick={handleGenerateNextWeek}
             disabled={loading}
@@ -118,6 +118,12 @@ function CalendarView({ calendar, inputData, onNextWeek, onError, loading, setLo
             ) : (
               '➡️ Generate Next Week'
             )}
+          </button>
+          <button
+            onClick={exportAsJSON}
+            className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg transition-colors text-sm"
+          >
+            📥 Export JSON
           </button>
         </div>
       </div>
