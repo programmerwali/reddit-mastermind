@@ -104,18 +104,20 @@ function CalendarView({ calendar, inputData, onNextWeek, onError, loading, setLo
 
         {/* Action Buttons */}
         <div className="flex gap-3">
+
           <button
             onClick={handleGenerateNextWeek}
             disabled={loading}
-            className="flex-1 bg-orange-600 hover:bg-orange-700 disabled:bg-gray-400 text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm"
+            className="flex-1 bg-orange-600 hover:bg-orange-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm flex items-center justify-center"
           >
-            {loading ? 'Generating...' : '➡️ Generate Next Week'}
-          </button>
-          <button
-            onClick={exportAsJSON}
-            className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg transition-colors text-sm"
-          >
-            📥 Export JSON
+            {loading ? (
+              <>
+                <LoadingSpinner />
+                <span>Generating Week {calendar.week + 1}...</span>
+              </>
+            ) : (
+              '➡️ Generate Next Week'
+            )}
           </button>
         </div>
       </div>

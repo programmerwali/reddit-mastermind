@@ -1,5 +1,9 @@
 import { useState } from 'react';
 import { api } from '../utils/api';
+import { useState } from 'react';
+import { api } from '../utils/api';
+import LoadingSpinner from './LoadingSpinner';
+
 
 // Sample data for quick testing
 const SAMPLE_DATA = {
@@ -236,14 +240,20 @@ function InputForm({ onCalendarGenerated, onError, loading, setLoading }) {
             required
           />
         </div>
-
         {/* Submit Button */}
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-orange-600 hover:bg-orange-700 disabled:bg-gray-400 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+          className="w-full bg-orange-600 hover:bg-orange-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center"
         >
-          {loading ? 'Generating...' : '🚀 Generate Calendar'}
+          {loading ? (
+            <>
+              <LoadingSpinner />
+              <span>Generating Calendar... (30-60s)</span>
+            </>
+          ) : (
+            '🚀 Generate Calendar'
+          )}
         </button>
       </form>
     </div>
