@@ -35,8 +35,8 @@ AI-powered Reddit content calendar generator that creates authentic, high-qualit
 
 ## 🚀 Live Demo
 
-- **Frontend**: [Deployed URL - Add after Vercel deployment]
-- **Backend API**: [Deployed URL - Add after Railway deployment]
+- **Frontend**: https://reddit-mastermind-pi.vercel.app/
+- **Backend API**: https://reddit-mastermind-production.up.railway.app
 
 ## 📦 Local Setup
 
