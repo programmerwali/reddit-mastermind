@@ -1,8 +1,8 @@
-# 🎯 Reddit Mastermind
+#  Reddit Mastermind
 
 AI-powered Reddit content calendar generator that creates authentic, high-quality Reddit marketing campaigns.
 
-## 🌟 Features
+##  Features
 
 - **Natural Reddit Posts**: AI generates authentic questions that don't feel like ads
 - **Strategic Conversations**: Creates realistic comment threads with organic product mentions
@@ -10,7 +10,7 @@ AI-powered Reddit content calendar generator that creates authentic, high-qualit
 - **Multi-Week Planning**: Intelligent calendar generation with pattern avoidance
 - **Beautiful UI**: React + Tailwind frontend with real-time calendar viewing
 
-## 🏆 Quality Scores
+##  Quality Scores
 
 - **Naturalness**: 10/10
 - **Persona Variety**: 10/10
@@ -19,7 +19,7 @@ AI-powered Reddit content calendar generator that creates authentic, high-qualit
 - **Anti-Spam**: 8/10
 - **Overall**: 9.4/10
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 **Backend:**
 - Python 3.11
@@ -33,12 +33,12 @@ AI-powered Reddit content calendar generator that creates authentic, high-qualit
 - Tailwind CSS
 - Axios
 
-## 🚀 Live Demo
+##  Live Demo
 
 - **Frontend**: https://reddit-mastermind-pi.vercel.app/
 - **Backend API**: https://reddit-mastermind-production.up.railway.app
 
-## 📦 Local Setup
+##  Local Setup
 
 ### Backend
 ```bash
@@ -55,7 +55,7 @@ npm install
 npm run dev
 ```
 
-## 🎯 How It Works
+##  How It Works
 
 1. Input company info, personas, subreddits, and keywords
 2. AI generates natural Reddit posts (no product mention)
@@ -64,17 +64,17 @@ npm run dev
 5. Quality scorer evaluates authenticity
 6. Export calendar as JSON
 
-## 📊 Algorithm Features
+##  Algorithm Features
 
 - **Pattern Breaking**: Avoids repetitive language and timing
 - **Persona Rotation**: Each character has distinct voice
 - **Anti-Spam Detection**: Flags promotional language
 - **Multi-Week Intelligence**: Tracks previous calendars to avoid repetition
 
-## 👤 Author
+##  Author
 
 Built by Wali for Reddit Mastermind Assignment
 
-## 📝 License
+##  License
 
 MIT License
